@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Diagrama | <%= proyecto.name %>
+  </title>
+  <link rel="shortcut icon" href="resources/css/logoFICCT.jpg" type="image/x-icon">
+
+  <!-- Enlace al archivo CSS externo -->
+  <link rel="stylesheet" href="/resources/css/style2.css">
+
+  <!-- Font Awesome para íconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+</head>
+
+<body>
+  <!-- Barra de Herramientas -->
+  <div class="container">
+    <button class="componentes" id="DelButton"><i class="fas fa-eraser"></i> Delete</button>
+    <button class="componentes" id="saveButton"><i class="fas fa-eraser"></i> Guardar</button>
+
+
+    <button class="componentes" id="ClassButton"><i class="fas fa-cubes"></i> Clase UML</button>
+
+    <select id="RelationshipType" name="RelationshipType" class="hidden">
+      <option value="association">Asociación</option>
+      <option value="inheritance">Herencia</option>
+      <option value="aggregation">Agregación</option>
+      <option value="composition">Composición</option>
+      <option value="dependency">Dependencia</option>
+      <option value="realization">Realización</option>
+    </select>
+
+    <button class="componentes" id="RelationshipButton"><i class="fas fa-project-diagram"></i> Relación</button>
+
+    <!-- Nuevo botón para descargar el archivo .java -->
+    <button class="componentes" id="downloadJavaButton"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#8C1A10">
+      <path
+        d="M720-131.46 872.54-284 831-325.54l-79 79V-431h-64v184.46l-79-79L567.46-284 720-131.46ZM567-7v-66h306v66H567ZM257.62-167q-36.81 0-63.71-26.91Q167-220.81 167-257.62v-524.76q0-36.81 26.91-63.71Q220.81-873 257.62-873H525l228 228v118.62h-66V-607H487v-200H257.62q-9.24 0-16.93 7.69-7.69 7.69-7.69 16.93v524.76q0 9.24 7.69 16.93 7.69 7.69 16.93 7.69h214v66h-214ZM233-233v-574 574Z" />
+    </svg>Archivos Java</button>
+    <!-- Botón para descargar el archivo demo.zip -->
+    <button class="componentes" id="downloadZipButton"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ECB576">
+      <path
+        d="M621-461v-72h136v72H621Zm0 71H485v-71h136v71Zm0 71v-71h136v71H621ZM424-605 319-710H170v460h315v-69h136v69h169v-355H621v72H485v-72h-61ZM170-114q-57.12 0-96.56-39.44Q34-192.88 34-250v-460q0-57.13 39.44-96.56Q112.88-846 170-846h205l105 105h310q57.13 0 96.56 39.44Q926-662.13 926-605v355q0 57.12-39.44 96.56Q847.13-114 790-114H170Zm0-136v-460 460Z" />
+    </svg>Spring Boot</button>
+    <!-- Nuevos botones -->
+    <!-- <button class="componentes" id="exportImageButton"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#75FB4C"><path d="M212-76q-57.12 0-96.56-39.44Q76-154.88 76-212v-536q0-57.13 39.44-96.56Q154.88-884 212-884h536q57.13 0 96.56 39.44Q884-805.13 884-748v536q0 57.12-39.44 96.56Q805.13-76 748-76H212Zm0-136h536v-536H212v536Zm4-50h528L571-502 450-341l-91-121-143 200Zm-4 50v-536 536Z"/></svg></button> -->
+
+    <button class="componentes" id="exportXMIButton"><i class="fas fa-file-export"></i> Exportar a XMI</button>
+
+    <!-- Lista de opciones para estilos predefinidos -->
+      <!--<select id="styleSelector" class="componentes">
+        <option value="default">Estilos</option>
+        <option value="darkMode">Modo Oscuro</option>
+        <option value="lightMode">Modo Claro</option>
+        <option value="blueprint">Estilo Plano Azul</option>
+      </select> -->
+  </div>
+
+  <!-- Canvas para dibujar el diagrama -->
+  <div class="lienzo">
+    <canvas id="canvas" width="1500" height="800"></canvas>
+  </div>
+
+  <!-- Campos ocultos para pizarra_id y proyecto_name -->
+  <input id="objetos" type="hidden" value='<%= JSON.stringify(proyecto.objetos) %>'>
+
+  <input id="pizarra_id" type="hidden" value="<%= pizarra_id %>">
+  <input id="proyecto_name" type="hidden" value="<%= proyecto.name %>">
+
+  <!-- Modal para editar clases -->
+  <div id="classModal" class="modal">
+    <div class="modal-content">
+      <span id="closeModal" class="close">&times;</span>
+      <h2>Editar Clase</h2>
+      <label for="className">Nombre de la clase:</label><br>
+      <input type="text" id="className"><br><br>
+      <h3>Atributos</h3>
+      <textarea id="classAttributes" rows="5" placeholder="Ingresa cada atributo en una línea separada"></textarea><br>
+      <h3>Métodos</h3>
+      <textarea id="classMethods" rows="5" placeholder="Ingresa cada método en una línea separada"></textarea><br><br>
+      <button id="saveClass">Guardar</button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Scripts personalizados -->
+
+
+  <script src="/resources/js/UMLClass.js"></script>
+  <script src="/resources/js/UMLRelationship.js"></script>
+  <script src="/resources/js/main.js"></script>
+  <!-- <script src="/resources/js/extras.js"></script> -->
+
+
+</body>
+
+</html>

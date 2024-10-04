@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | D. de Clases</title>
+    <link rel="stylesheet" href="resources/css/login.css" />
+    <link
+      rel="shortcut icon"
+      href="resources/css/logo.gif"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+  </head>
+  <body>
+    <!-- Contenedor principal para centrar ambos elementos -->
+    <div class="main-container">
+      <!-- Formulario de login -->
+      <div class="login-form">
+        <h1>DIAGRAMADOR DE CLASE</h1>
+        <form action="auth" method="POST">
+          <input
+            type="text"
+            name="user"
+            placeholder="Usuario"
+            autofocus
+            required
+          />
+          <input
+            type="password"
+            name="pass"
+            placeholder="Contraseña"
+            required
+          />
+          <input type="submit" class="btn-login" value="Acceder" />
+        </form>
+        <a href="register" class="btn-register">Crear cuenta</a>
+      </div>
+
+      <div class="Contenedor">
+      <!-- Imagen de bienvenida -->
+      <div class="imagen">
+      </div>
+      <div class="boton-container">
+        <button class="btn-login" onclick="window.open('https://www.youtube.com/watch?v=Unb2kUdDRgY', '_blank')"><i class="fas fa-video"></i> Ver Tutorial en YouTube</button>
+    </div>
+  </div>
+    </div>
+
+    <!-- Librería SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <!-- Condicional para mostrar la alerta -->
+    <% if (typeof alert != "undefined") { %>
+    <script>
+      Swal.fire({
+        title: "<%= alertTitle %>",
+        text: "<%= alertMessage %>",
+        icon: "<%= alertIcon %>",
+        showConfirmButton: "<%= showConfirmButton %>",
+        timer: "<%= timer %>",
+      }).then(() => {
+        window.location = "/proyecto<%= ruta %>";
+      });
+    </script>
+    <% } %>
+  </body>
+</html>

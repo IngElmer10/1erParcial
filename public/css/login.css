@@ -1,0 +1,139 @@
+body {
+    background: linear-gradient(#000750, #0d3bc5) fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    padding: 20px;
+}
+
+.main-container {
+    display: flex;
+    justify-content: space-around; /* Distribuye los elementos a ambos lados */
+    align-items: center;
+    width: 90%; /* Ocupa casi todo el ancho de la pantalla */
+    max-width: 1200px; /* Limitar el ancho máximo */
+}
+
+.login-form {
+    background: linear-gradient(180deg, #0d3bc5, #1488e7);
+    padding: 80px;
+    text-align: center;
+    color: white;
+    max-width: 350px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    margin-right: 50px; /* Añadir espacio entre el formulario y la imagen */
+}
+
+.login-form h1 {
+    text-align: center;
+    color: white;
+    font-size: 40px;
+    margin-bottom: 20px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.login-form input[type="password"],
+.login-form input[type="text"] {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ced4da;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border-radius: 5px; /* Bordes redondeados */
+}
+
+/* Estilos para botón Acceder */
+.btn-login {
+    background-color: #0051dd;
+    width: 100%;
+    border: none;
+    color: white;
+    padding: 16px 0;
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 30px; /* Espacio inferior */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer;
+}
+
+.btn-login:hover {
+    background-color: #132dc5;
+    color: white;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* Botón de registro */
+.btn-register {
+    width: 100%;
+    padding: 15px;
+    background-color: #34D399;
+    border: 0;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+    color: #ffffff;
+    margin-top: 20px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.btn-register:hover {
+    background-color: #10B981;
+}
+
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Estilo del contenedor de la imagen */
+.imagen {
+    background-image: url('./logo.gif');
+    background-size:auto; 
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 350px;
+    height: 350px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    margin-left: 50px; /* Añadir espacio entre la imagen y el formulario */
+}
+
+.boton-container {
+    margin-top: 20px; /* Controla la separación entre la imagen y el botón */
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.imagen h1 {
+    color: black;
+    font-size: 24px;
+    z-index: 2;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    margin-top: 10px;
+    font-size: 24px; /* Ajustar el tamaño del texto */
+}
+
+.imagen:hover h1 {
+    font-size: 30px; /* Aumentar tamaño del texto al pasar el ratón */
+    transition: font-size 0.3s ease; /* Transición suave en el cambio de tamaño */
+}
+
+.imagen::before {
+    display: none;
+}
+
+/* Ajustar sombra en la imagen al hacer hover */
+.imagen:hover {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+}
